@@ -85,4 +85,4 @@ copy
 t "Yes, overwrite all". Additionally, select the index pattern `nyc_visionzero` when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `NYC Taxi Trips` dashboard
-    https://raw.githubusercontent.com//nyc-taxi-elk/blob/master/Screenshot%20from%202019-06-28%2016-40-58.png
+    https://github.com/xuantubka//nyc-taxi-elk/blob/master/Screenshot%20from%202019-06-28%2016-40-58.png

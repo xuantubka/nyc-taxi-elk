@@ -1,0 +1,72 @@
+{
+  "description": "nyc taxi trips",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{DATA:vendor_id},%{CUSTOM_DATE:pickup_datetime},%{CUSTOM_DATE:dropoff_datetime},%{DATA:passenger_count},%{DATA:trip_distance},%{DATA:pickup_longitude},%{DATA:pickup_latitude},%{DATA:rate_code},%{DATA:store_and_fwd_flag},%{DATA:dropoff_longitude},%{DATA:dropoff_latitude},%{DATA:payment_type},%{DATA:fare_amount},%{DATA:surcharge},%{DATA:mta_tax},%{DATA:tip_amount},%{DATA:tolls_amount},%{DATA:total_amount}"],
+        "pattern_definitions": {
+          "CUSTOM_DATE": "%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}"
+        },
+         "ignore_failure" : true
+      }
+    },
+    {
+      "set": {
+        "field": "pickup_location",
+        "value": "{{pickup_latitude}}, {{pickup_longitude}}",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "set": {
+        "field": "dropoff_location",
+        "value": "{{dropoff_latitude}}, {{dropoff_longitude}}",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "date": {
+        "field": "timestamp",
+        "target_field": "@timestamp",
+        "formats": [
+          "yyyy/MM/dd HH:mm:ss.SS",
+          "ISO8601"
+        ],
+        "timezone": "GMT",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "pickup_longitude",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "pickup_latitude",
+         "ignore_failure" : true
+      }
+    },
+    {
+    "remove": {
+      "field": "dropoff_longitude",
+       "ignore_failure" : true
+    }
+  },
+  {
+    "remove": {
+      "field": "dropoff_latitude",
+       "ignore_failure" : true
+    }
+  },
+    {
+      "remove": {
+        "field": "timestamp",
+         "ignore_failure" : true
+      }
+    }
+  ]
+}

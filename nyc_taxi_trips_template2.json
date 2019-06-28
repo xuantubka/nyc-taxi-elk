@@ -1,0 +1,86 @@
+{
+  "order": 0,
+  "index_patterns": "nyc-taxi-trips-*",
+  "mappings": {
+    "doc": {
+      "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "beat": {
+          "properties": {
+            "hostname": {
+              "type": "keyword"
+            },
+            "name": {
+              "type": "keyword"
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
+        },
+        "vendor_id": {
+          "type": "keyword"
+        },
+        "passenger_count": {
+          "type": "integer"
+        },
+        "trip_distance": {
+          "type": "float"
+        },
+        "rate_code": {
+          "type": "keyword"
+        },
+        "store_and_fwd_flag": {
+          "type": "keyword"
+        },
+        "pickup_location": {
+          "type": "geo_point"
+        },
+        "dropoff_location": {
+          "type": "geo_point"
+        },
+        "fare_amount": {
+          "type": "float"
+        },
+        "payment_type": {
+          "type": "keyword"
+        },
+        "surcharge": {
+          "type": "float"
+        },
+        "mta_tax": {
+          "type": "float"
+        },
+        "tip_amount": {
+          "type": "float"
+        },
+        "tolls_amount": {
+          "type": "float"
+        },
+        "total_amount": {
+          "type": "float"
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "refresh_interval": "10s",
+      "number_of_shards": "1",
+      "number_of_replicas": "0"
+    }
+  }
+}

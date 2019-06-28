@@ -1,0 +1,13 @@
+filebeat.prospectors:
+- type: log
+  paths:
+    - /home/ds-ai-team/Downloads/2014-new-york-city-taxi-trips/nyc_taxi_data_2014.csv
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: nyc_taxi_trips
+  pipeline: nyc_taxi_trips
+  template.name: nyc_taxi_trips
+  template.path: ./nyc_taxi_trips_template2.json
+
+setup.template.enabled: false

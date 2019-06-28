@@ -85,4 +85,7 @@ copy
 t "Yes, overwrite all". Additionally, select the index pattern `nyc_visionzero` when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `NYC Taxi Trips` dashboard
+
+
+P/s: I was struggling to convert location to geo-point data type but it turned out that elasticsearch does not apply the the type I declared on template file. So my dashboard is lacking coordinate map for taxi trips distribution.  
   
